@@ -116,25 +116,25 @@ void ofApp::draw(){
         ofPushMatrix();
         ofTranslate(100, 0);
         ofFill();
-        ofDrawBitmapString("Channel01", -90,0);
+//        ofDrawBitmapString("Channel01", -90,0);
         ofSetColor(255,40);
-        ofDrawBitmapString("FFT: "+ ofToString(Channel01_FFT_size) + " freq", 0,15);
+//        ofDrawBitmapString("FFT: "+ ofToString(Channel01_FFT_size) + " freq", 0,15);
         
-        ofDrawBitmapString("Frequency: " + ofToString(Channel01_Pitch,0), 0,30);
-        ofDrawBitmapString("Linear Pitch: " + ofToString(Channel01_LinearPitch,0), 0,45);
-        ofDrawBitmapString("Amplitude: " + ofToString(Channel01_Amplitude,4), 0,60);
-        ofDrawBitmapString("Attack: " + ofToString(Channel01_Attack,4), 0,75);
-        for (int i = 0; i < Channel01_FFT_size; i++){
-            ofSetColor(255,20);
-            ofRect((i*6),0,5,-Channel01_Analyzer.averages[i] * 3);
-            ofSetColor(255);
-            ofLine((i*6), -Channel01_Analyzer.averages[i] * 3, ((i+1)*6), -Channel01_Analyzer.averages[i+1] * 3);
-        }
-        ofSetColor(255, 255*Channel01_Amplitude);
-        ofCircle(-50,50, Channel01_Attack*3);
+//        ofDrawBitmapString("Frequency: " + ofToString(Channel01_Pitch,0), 0,30);
+//        ofDrawBitmapString("Linear Pitch: " + ofToString(Channel01_LinearPitch,0), 0,45);
+//        ofDrawBitmapString("Amplitude: " + ofToString(Channel01_Amplitude,4), 0,60);
+//        ofDrawBitmapString("Attack: " + ofToString(Channel01_Attack,4), 0,75);
+//        for (int i = 0; i < Channel01_FFT_size; i++){
+//            ofSetColor(255,20);
+//            ofRect((i*6),0,5,-Channel01_Analyzer.averages[i] * 3);
+//            ofSetColor(255);
+//            ofLine((i*6), -Channel01_Analyzer.averages[i] * 3, ((i+1)*6), -Channel01_Analyzer.averages[i+1] * 3);
+//        }
+        ofSetColor(255*Channel01_Amplitude, 255, 255, 150);
+        ofCircle(ofGetWidth()/4,-ofGetHeight()/2 + 100, Channel01_Attack*20);
         ofSetColor(255);
-        ofNoFill();
-        ofCircle(-50, 50, Channel01_Attack*3);
+//        ofNoFill();
+//        ofCircle(-50, 50, Channel01_Attack*10);
         
         ofPopMatrix();
         
@@ -142,24 +142,25 @@ void ofApp::draw(){
         ofPushMatrix();
         ofTranslate(350, 0);
         ofFill();
-        ofDrawBitmapString("Channel02", -90,0);
+//        ofDrawBitmapString("Channel02", -90,0);
         ofSetColor(255,40);
-        ofDrawBitmapString("FFT: "+ ofToString(Channel02_FFT_size) + " freq", 0,15);
-        ofDrawBitmapString("Frequency: " + ofToString(Channel02_Pitch,0), 0,30);
-        ofDrawBitmapString("Linear Pitch: " + ofToString(Channel02_LinearPitch,0), 0,45);
-        ofDrawBitmapString("Amplitude: " + ofToString(Channel02_Amplitude,4), 0,60);
-        ofDrawBitmapString("Attack: " + ofToString(Channel02_Attack,4), 0,75);
-        for (int i = 0; i < Channel02_FFT_size; i++){
-            ofSetColor(255,20);
-            ofRect((i*6),0,5,-Channel02_Analyzer.averages[i] * 3);
-            ofSetColor(255);
-            ofLine((i*6), -Channel02_Analyzer.averages[i] * 3, ((i+1)*6), -Channel02_Analyzer.averages[i+1] * 3);
-        }
-        ofSetColor(255, 255*Channel02_Amplitude);
-        ofCircle(-50,50, Channel02_Attack*3);
+//        ofDrawBitmapString("FFT: "+ ofToString(Channel02_FFT_size) + " freq", 0,15);
+//        ofDrawBitmapString("Frequency: " + ofToString(Channel02_Pitch,0), 0,30);
+//        ofDrawBitmapString("Linear Pitch: " + ofToString(Channel02_LinearPitch,0), 0,45);
+//        ofDrawBitmapString("Amplitude: " + ofToString(Channel02_Amplitude,4), 0,60);
+//        ofDrawBitmapString("Attack: " + ofToString(Channel02_Attack,4), 0,75);
+//        for (int i = 0; i < Channel02_FFT_size; i++){
+//            ofSetColor(255,20);
+//            ofRect((i*6),0,5,-Channel02_Analyzer.averages[i] * 3);
+//            ofSetColor(255);
+//            ofLine((i*6), -Channel02_Analyzer.averages[i] * 3, ((i+1)*6), -Channel02_Analyzer.averages[i+1] * 3);
+//        }
+        ofSetColor(255, 255*Channel02_Amplitude, 255, 150);
+        ofSetRectMode(OF_RECTMODE_CENTER);
+        ofRect(ofGetWidth()/3,-ofGetHeight()/2 + 100, Channel02_Attack*20, Channel02_Attack*20);
         ofSetColor(255);
-        ofNoFill();
-        ofCircle(-50, 50, Channel02_Attack*3);
+//        ofNoFill();
+//        ofRect(-50, 50, Channel02_Attack*10, Channel02_Attack*10);
         ofPopMatrix();
         
         ofPopMatrix();
