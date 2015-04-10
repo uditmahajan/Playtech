@@ -12,16 +12,16 @@ void ofApp::setup(){
     
     ofSetVerticalSync(true);
     ofSetCircleResolution(80);
-    ofBackground(54, 54, 54);
+//    ofBackground(20);
     
     ofSoundStreamListDevices();
     
     //	cout<< "devices: " <<  ofSoundStreamListDevices() << endl;
     
     
-    //AudioIn.setDeviceID(2); // !!! watch print for list of devices !!!
+    AudioIn.setDeviceID(2); // !!! watch print for list of devices !!!
     if (NCHAN > 3){
-        if ( ! AudioIn.setup(this, 2, 4, 44100, BUFFER_SIZE, 4)){
+        if ( ! AudioIn.setup(this, 2, 2, 44100, BUFFER_SIZE, 4)){
             setupFailed = true;
         }
     }
@@ -37,6 +37,7 @@ void ofApp::setup(){
     LowGain = 0.01f; // increasing gain at higher frequencies
     
     avg_power  = 0.0f;
+    counter = 0;
     
     Channel01_Analyzer.setup(44100, BUFFER_SIZE/2, 2);
     Channel02_Analyzer.setup(44100, BUFFER_SIZE/2, 2);
@@ -75,6 +76,8 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    
+        ofBackground(20);
     
     if(!setupFailed){
         audioAnalisys();
@@ -131,7 +134,7 @@ void ofApp::draw(){
 //            ofLine((i*6), -Channel01_Analyzer.averages[i] * 3, ((i+1)*6), -Channel01_Analyzer.averages[i+1] * 3);
 //        }
         ofSetColor(255*Channel01_Amplitude, 255, 255, 150);
-        ofCircle(ofGetWidth()/4,-ofGetHeight()/2 + 100, Channel01_Attack*20);
+        ofCircle(ofGetWidth()/4,-ofGetHeight()/2 + 100, Channel01_Attack*35);
         ofSetColor(255);
 //        ofNoFill();
 //        ofCircle(-50, 50, Channel01_Attack*10);
@@ -155,9 +158,21 @@ void ofApp::draw(){
 //            ofSetColor(255);
 //            ofLine((i*6), -Channel02_Analyzer.averages[i] * 3, ((i+1)*6), -Channel02_Analyzer.averages[i+1] * 3);
 //        }
+        
         ofSetColor(255, 255*Channel02_Amplitude, 255, 150);
         ofSetRectMode(OF_RECTMODE_CENTER);
-        ofRect(ofGetWidth()/3,-ofGetHeight()/2 + 100, Channel02_Attack*20, Channel02_Attack*20);
+        ofRect(ofGetWidth()/3,-ofGetHeight()/2 + 100, Channel02_Attack*70, Channel02_Attack*70);
+        
+        //Collision circle
+        if ((Channel01_Attack*35 > 90+ofGetWidth()/12) && (Channel02_Attack*70 > 90+ofGetWidth()/12)) {
+            ofFill();
+            ofSetColor(ofRandom(255), ofRandom(255), ofRandom(255));
+//            ofCircle(90+ofGetWidth()/12,-ofGetHeight()/2 + 100, ofRandom(50, 100));
+            ofBackground(ofRandom(255));
+            counter++;
+            
+        }
+        
         ofSetColor(255);
 //        ofNoFill();
 //        ofRect(-50, 50, Channel02_Attack*10, Channel02_Attack*10);
@@ -173,7 +188,10 @@ void ofApp::draw(){
         ofDrawBitmapString(" CHANGE SYSTEM SETTINGS ", ofGetWidth()/2-90, ofGetHeight()/2);
         ofDrawBitmapString(" TO 2-CHANNEL INTERFACE ", ofGetWidth()/2-90, ofGetHeight()/2+50);
     }
-
+    
+    ofSetColor(255);
+    lex.loadFont(ofToDataPath("lek.otf"), 75);
+    lex.drawString(ofToString(counter), ofGetWidth()/2 - 40, 100);
 
 }
 

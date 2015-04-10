@@ -45,6 +45,10 @@ class ofApp : public ofBaseApp{
     float Channel03[BUFFER_SIZE];
     float Channel04[BUFFER_SIZE];
     
+    int counter;
+    
+    ofTrueTypeFont lex;
+    
     fft		Channel01_fft;
     fft     Channel02_fft;
     fft		Channel03_fft;
